@@ -15,7 +15,7 @@ function [c1,c2] = p1_vers2(c1_inicial,c2_inicial,num_inicial)
     length(X(1,:))
     Matrix = zeros(2,2);
     Matrix = [(1/V1)*(-K12-K10),(1/V1)*K21;(1/V2)*K12,(-1/V2)*K21];
-    %meter merdas à toa
+    
     d = d*(1/V1)*delta;
 
     for k = 1:length(X(1,:)-1)

@@ -12,7 +12,6 @@ c2 = zeros(1,359);
 %condições iniciais%
 c1(1) = 1;
 c2(1) = 2;
-%meter merdas à toa
 
 d = d*(1/V1)*delta;
 for k = 1:length(c1)
