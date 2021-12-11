@@ -1,0 +1,3 @@
+u = zeros(1,360);
+for i:length(u)
+u() = c2/(7.1903+c2)
