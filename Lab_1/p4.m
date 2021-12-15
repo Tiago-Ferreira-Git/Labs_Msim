@@ -18,14 +18,14 @@ spacing = zeros(1,max_mg);
 %Condição inicial
 V(:,1) = 1;
 
-for ll = 1:max_mg
+for jj = 1:max_mg
     %Comentar esta linha caso necessário
-    figure(ll)
+    figure(jj)
     
     %Loop que descobre os diferentes andamentos de volume quando o volume
     %inicial é 1mm^3 e se toma ll mg de ii dias em ii dias
     for ii = 1:max_space
-        u = p2(ll,100,ii);
+        u = p2(jj,100,ii);
         for k = 1:length(V)-1
            V(ii,k+1) = V(ii,k) + h*(a*V(ii,k)*(1-V(ii,k)/Kt) - b*u(k)*V(ii,k));
         end
@@ -42,11 +42,11 @@ for ll = 1:max_mg
             index = ii;
         end
     end
-    spacing(ll) = index;
+    spacing(jj) = index;
     
 end
 
-figure(ll+1);
+figure(jj+1);
 plot(1:max_mg, spacing);
 axis([0 max_mg 0 min(max_space + 5,30)]);
 xlabel('Dose (mg)')
