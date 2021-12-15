@@ -1,5 +1,5 @@
 %Constantes e Vetor d como definido no enunciado%
-d1 = upsample(zeros(1,60)+3,6); 
+d1 = upsample(zeros(1,100)+3,6); 
 d1 = d1(1:100);
 h=1;
 K12 = 0.3 * 3600;
@@ -24,11 +24,15 @@ figure(1)
 gg = plot(0:1:99,c1,0:1:99,c2);
 axis([0 99 1 3]);
 set(gg,'LineWidth',1.5)
+xlabel('Time (days)')
+ylabel('Concentration (mg/kg)')
 legend(gg,'C1','C2','Location','SouthEast')
 
 figure(2)
 gg = plot(0:1:99,d1);
 axis([0 99 0 4]);
+xlabel('Time (days)')
+ylabel('Concentration (mg/kg)')
 set(gg,'LineWidth',1.5,'Color','magenta')
 
 %set(c2,'LineWidth',1.5,'Color','red')
