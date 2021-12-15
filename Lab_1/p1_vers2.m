@@ -1,6 +1,6 @@
-function [c1,c2] = p1_vers2(c1_inicial,c2_inicial,num_inicial)
+function [c1,c2] = p1_vers2(c1_inicial,c2_inicial,dosagem,num_inicial)
     %Constantes e Vetor d como definido no enunciado%
-    d = upsample(zeros(1,num_inicial)+3,6); 
+    d = upsample(zeros(1,num_inicial)+dosagem,6); 
     h=1;
     K12 = 0.3 * 3600;
     K21 = 0.2455 * 3600;
