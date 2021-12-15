@@ -1,6 +1,6 @@
-function [c1,c2] = p1_vers2(c1_inicial,c2_inicial,dosagem,dias)
+function [c1,c2] = p1_vers2(c1_inicial,c2_inicial,dosagem,dias,dias_entre_dosagem)
     %Constantes e Vetor d como definido no enunciado%
-    d = upsample(zeros(1,dias)+dosagem,6); 
+    d = upsample(zeros(1,dias)+dosagem,dias_entre_dosagem); 
     h=1;
     K12 = 0.3 * 3600;
     K21 = 0.2455 * 3600;
@@ -8,7 +8,7 @@ function [c1,c2] = p1_vers2(c1_inicial,c2_inicial,dosagem,dias)
     V1 = 3110;
     V2 = 3110;
     delta = 1000;
-    X = zeros(2,(dias*6)-1);
+    X = zeros(2,(dias*dias_entre_dosagem)-1);
     %condições iniciais%
     X(1,1) = c1_inicial;
     X(2,1) = c2_inicial;
@@ -26,6 +26,6 @@ function [c1,c2] = p1_vers2(c1_inicial,c2_inicial,dosagem,dias)
     c1 = X(1,:);
     c2 = X(2,:);
     
-    plot(1:1:dias*6,X(1,:),1:1:dias*6,X(2,:),1:1:dias*6,d);
+    %plot(1:1:dias*dias_entre_dosagem,X(1,:),1:1:dias*dias_entre_dosagem,X(2,:),1:1:dias*dias_entre_dosagem,d);
     % figure(1)
 
