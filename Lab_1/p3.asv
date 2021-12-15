@@ -1,3 +1,25 @@
-u = zeros(1,360);
-for i:length(u)
-u() = c2/(7.1903+c2)
+Num_Dias = 100;
+Vol_inicial = 1;
+u = zeros(1, Num_dias)+0.5;
+Vol = zeros(1, Num_dias);
+
+Vol(1) = Vol_inicial;
+for k = 1:length(V)-1
+   Vol(k+1) = V(k) + h*(a*V(k)*(1-V(k)/Kt) - b*u(k)*V(k));
+end
+plot(1:length(V), V)
+
+% para testar tudo
+% for n = 1:10
+%     figure(n)
+%     % cond. ini.: 
+%     V(1) = n; %?
+%     for u = 0:0.01:1
+%         for k = 1:length(V)-1
+%             V(k+1) = V(k) + h*(a*V(k)*(1-V(k)/Kt) - b*u*V(k));
+%         end
+%         plot(1:length(V), V)
+%         hold on
+% 
+%     end
+% end
