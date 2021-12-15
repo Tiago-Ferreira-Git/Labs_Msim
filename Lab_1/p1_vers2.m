@@ -12,7 +12,7 @@ function [c1,c2] = p1_vers2(c1_inicial,c2_inicial,dosagem,dias,dias_entre_dosage
     %condições iniciais%
     X(1,1) = c1_inicial;
     X(2,1) = c2_inicial;
-    length(X(1,:))
+    length(X(1,:));
     Matrix = zeros(2,2);
     Matrix = [(1/V1)*(-K12-K10),(1/V1)*K21;(1/V2)*K12,(-1/V2)*K21];
     
