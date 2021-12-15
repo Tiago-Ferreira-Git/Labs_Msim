@@ -23,7 +23,8 @@ function [c1,c2] = p1_vers2(c1_inicial,c2_inicial,dosagem,num_inicial)
         X(1,k+1) = X(1,k+1) + d(k);
 
     end
-
+    c1 = X(1,:);
+    c2 = X(2,:);
     plot(1:1:360,X(1,:),1:1:360,X(2,:),1:1:360,d);
     % figure(1)
 
