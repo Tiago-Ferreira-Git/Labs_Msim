@@ -1,7 +1,7 @@
-Num_dias = 60*6
+Num_dias = 20*6
 
 c2 = zeros(1,Num_dias);
-[~,c2] = p1_vers2(1,1,500,Num_dias/6);
+[~,c2] = p1_vers2(0,0,2,Num_dias/6);
 
 u = zeros(1,Num_dias);
 v = zeros(1,Num_dias);
