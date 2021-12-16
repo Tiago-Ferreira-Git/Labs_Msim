@@ -4,6 +4,7 @@
 %       -dias: Período de tempo a observar (em dias)
 %       -dias_entre_dosagem: Período de tempo entre cada toma do fármaco (em dias)
 %       -flag: Toma o valor 1 caso seja necessário representar graficamente
+%       -d: variável como definida no enunciado (para p5 passar como argumento um array não nulo)
 %       os vários valores de u e 0 se fôr apenas preciso calcular o valor
 %       de u
 %    Variável de saída:
