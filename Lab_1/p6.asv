@@ -1,7 +1,7 @@
 % modelar o efeito de R com uma equação diferencial
 %
-%               R'(t) = p*u(t)*R(t) , u < 0.2
-%               R'(t) = 0 ,           u > 0.2   
+%               R'(t) = a/c(t) , u < 0.2
+%               R'(t) = 0 ,               u > 0.2   
 
 clear 
 close all
@@ -9,27 +9,58 @@ close all
 % parametros
 h=1;
 dias = 100;
+a=1;
+b=0.05;
+c = 0.00; %crescimento natural da resistencia 
 
 % pre-alocar os vetores
 R = zeros(1, dias);
+u1 = zeros(1,dias);
 
 
-% efeito elevado
-figure(1)
-u1 = p2(20, dias, 5);
-% efeito reduzido
-figure(2)
-u2 = p2(10, dias, 10);
-
-% simular a eq diferencial
-figure(3)
-R(1) = 0;
-for k = 1:length(R)-1
-    if u(k) < 0.2
-        R(k+1) = R(k) + h*p*u(k);
-    else
-        R(k+1) = R(k);
-    end
+c2 = zeros(1,dias);
+[~,c2] = p1_vers2(0,0,20,dias,5,[]);
+plot(0:1:dias-1, c2)
+hold on 
+for i= 1:length(u1)
+    u1(i) = c2(i)/(7.1903+c2(i));
 end
-plot(0:length(R)-1, R);
+plot(1:1:dias,u1(:));
+for i= 1:length(R)
+    if u1(i) <0.3
+        R(i) = 0.1*i
+        
+end
+
+
+
+
+% % efeito elevado
+% % figure(1)
+% % u1 = p2(20, dias, 5);
+% % hold on
+% % R(1) = 0;
+% % for k = 1:length(R)-1
+% %     if u1(k) < 0.3
+% %         R(k+1) = R(k) + h*(a*u1(k) + b*R(k));
+% %     else
+% %         R(k+1) = (1+c)*R(k);
+% %     end
+% % end
+% % plot(0:length(R)-1, R);
+% % 
+% % efeito reduzido
+% % figure(2)
+% % u2 = p2(10, dias, 10);
+% % hold on
+% % R(1) = 0;
+% % for k = 1:length(R)-1
+% %     if u2(k) < 0.3
+% %         R(k+1) = R(k) + h*(a*u2(k) + b*R(k));
+% %     else
+% %         R(k+1) = (1+c)*R(k);
+% %     end
+% % end
+% % plot(0:length(R)-1, R);
+
 
