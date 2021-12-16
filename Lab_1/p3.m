@@ -1,3 +1,5 @@
+% irrelevante pq já está implementado no p4
+
 Num_dias = 100;
 Vol_inicial = 5;
 h=1;
