@@ -32,11 +32,12 @@ end
 plot(0:1:dias-1,u1, 'g');
 
 % calculo de r
-for i= 1:length(R)
+R(1) = 0.1;
+for i= 1:length(R)-1
     if u1(i) < 0.3
-        R(i) = i*0.05;
+        R(i+1) = R(i*h) + h*(0.05*R(i));
     else
-        R(i) = R(i-1);
+        R(i+1) = R(i);
     end
 end
 plot(0:1:dias-1,R, 'r');

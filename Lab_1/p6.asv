@@ -9,29 +9,59 @@ close all
 % parametros
 h=1;
 dias = 100;
-a=1;
-b=0.05;
-c = 0.00; %crescimento natural da resistencia 
+a = 0.09;
+Kt = 10;
+b = 1;
 
 % pre-alocar os vetores
 R = zeros(1, dias);
 u1 = zeros(1,dias);
+u2 = zeros(1,dias);
+Vol = zeros(1, dias);
 
-
+figure(1)
+% calculo de c2
 c2 = zeros(1,dias);
-[~,c2] = p1_vers2(0,0,20,dias,5,[]);
-plot(0:1:dias-1, c2)
+[~,c2] = p1_vers2(0,0,5,dias,10,[]);
+%plot(0:1:dias-1, c2, 'y')
 hold on 
+% calculo de u (sem efeito da resistencia)
 for i= 1:length(u1)
     u1(i) = c2(i)/(7.1903+c2(i));
 end
-plot(1:1:dias,u1(:));
-for i= 1:length(R)
-    if u1(i) <0.3
-        R(i) = 0.1*i
-        
-end
+plot(0:1:dias-1,u1, 'g');
 
+% calculo de r
+for i= 1:length(R)
+    X(:,k+1) = (X(:,k*h)+ h*(Matriz*([X(1,k);X(2,k)])));
+    if u1(i) < 0.3
+        R(i) = i*0.05;
+    else
+        R(i) = R(i-1);
+    end
+end
+plot(0:1:dias-1,R, 'r');
+
+% u com o efeito de r
+for i= 1:length(u2)
+    u2(i) = u1(i) * 1/(1+R(i));
+end
+plot(0:1:dias-1,u2, 'b');
+
+
+% Volume do tumor
+figure(2)
+Vol1(1) = 1;
+for k = 1:length(Vol)-1
+   Vol1(k+1) = Vol1(k) + h*(a*Vol1(k)*(1-Vol1(k)/Kt) - b*u1(k)*Vol1(k));
+end
+plot(0:length(Vol1)-1, Vol1)
+hold on
+Vol2(1) = 1;
+for k = 1:length(Vol)-1
+   Vol2(k+1) = Vol2(k) + h*(a*Vol2(k)*(1-Vol2(k)/Kt) - b*u2(k)*Vol2(k));
+end
+plot(0:length(Vol1)-1, Vol2)
 
 
 

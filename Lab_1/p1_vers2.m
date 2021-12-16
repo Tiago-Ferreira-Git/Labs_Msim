@@ -1,4 +1,4 @@
-%Função p2
+%Função p1
 %   Variáveis de entrada:
 %       -c1_inicial: condição inicial para a concentração 1       
 %       -c2_inicial: condição inicial para a concentração 2
