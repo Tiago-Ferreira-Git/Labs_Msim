@@ -3,7 +3,7 @@ clear
 
 %Variaveis de controlo
 max_mg = 20;
-max_space = 10;
+max_space = 30;
 flag = 1;
 
 %Parametros dados
@@ -15,6 +15,7 @@ h = 1;
 %Pre-alocar o vetor
 V = zeros(max_space, 100);
 spacing = zeros(1,max_mg);
+u = zeros(max_space, 100);
 
 %Condição inicial
 V(:,1) = 1;
@@ -32,15 +33,17 @@ for jj = 1:max_mg
     %flag == 1 faz graficos, flag != 1 não faz 
     if flag == 1 
         figure(jj)
-        mesh(V)
+        mesh(0:1:99,1:1:max_space,V)
         xlabel('Time (days)')
         ylabel('Spacing between doses (days)')
         zlabel('Volume (mm^3)')
+        axis([0 99 1 max_space 0 2]);
         figure(jj+100);
-        mesh(u.*100)    
+        mesh(0:1:99,1:1:max_space,u.*100)    
         xlabel('Time (days)')
         ylabel('Spacing between doses (days)')
-        zlabel('Efficiency (%)') 
+        zlabel('Effect (%)') 
+        axis([0 99 1 max_space 0 100]);
     end
     
     new_min = 1000;
