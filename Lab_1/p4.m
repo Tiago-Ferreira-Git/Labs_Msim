@@ -3,7 +3,7 @@ clear
 
 %Variaveis de controlo
 max_mg = 20;
-max_space = 30;
+max_space = 50;
 flag = 1;
 
 %Parametros dados
@@ -24,7 +24,7 @@ for jj = 1:max_mg
     %Loop que descobre os diferentes andamentos de volume quando o volume
     %inicial é 1mm^3 e se toma jj mg de ii dias em ii dias
     for ii = 1:max_space
-        u(ii,:) = p2(jj,100,ii);
+        u(ii,:) = p2(jj,100,ii, 0, []);
         for k = 1:length(V)-1
            V(ii,k+1) = V(ii,k) + h*(a*V(ii,k)*(1-V(ii,k)/Kt) - b*u(ii,k)*V(ii,k));
         end
@@ -37,7 +37,7 @@ for jj = 1:max_mg
         xlabel('Time (days)')
         ylabel('Spacing between doses (days)')
         zlabel('Volume (mm^3)')
-        axis([0 99 1 max_space 0 2]);
+        axis([0 99 1 max_space 0 15]);
         figure(jj+100);
         mesh(0:1:99,1:1:max_space,u.*100)    
         xlabel('Time (days)')

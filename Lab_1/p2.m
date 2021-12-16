@@ -11,21 +11,21 @@
 %       enunciado
 
 
-function [u] = p2(dosagem,dias,dias_entre_dosagem,flag)
-    
+function [u] = p2(dosagem,dias,dias_entre_dosagem,flag,d)
+            
     c2 = zeros(1,dias);
-    [~,c2] = p1_vers2(0,0,dosagem,dias,dias_entre_dosagem,[]);
+    [~,c2] = p1_vers2(0,0,dosagem,dias,dias_entre_dosagem,d);
 
     u = zeros(1,dias);
     if (flag ==1)
        for x=1:10:100
-            [~,c2] = p1_vers2(0,0,x,dias,dias_entre_dosagem,[]);
+            [~,c2] = p1_vers2(0,0,x,dias,dias_entre_dosagem,d);
             for i= 1:length(u)
                 u(i) = c2(i)/(7.1903+c2(i));
             end
             xlabel('Time (Days)')
             ylabel('U(Days)') 
-            plot(1:1:dias,u);
+            %plot(1:1:dias,u);
             hold on
        end
     else
