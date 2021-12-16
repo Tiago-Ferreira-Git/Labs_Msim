@@ -36,18 +36,20 @@ for k = 1:length(V0)
     u_lim = (a - a/Kt*v0)/b;
     U_lim(k) = u_lim;
 end
+figure(1)
 plot(V0, U_lim)
 xlabel('Volume inicial do tumor')
 ylabel('Valor de u necessário para que o tumor diminuia')
 
 % Para ter um plotzinho bacano a mostrar que um volume n pode ser nagtivo
-% for u = 0:0.1:1
-%     h=0.1;
-%     Vol = zeros(1, 50);
-%     Vol(1) = 1;
-%     for k = 1:length(Vol)-1
-%        Vol(k+1) = Vol(k) + h*(a*Vol(k)*(1-Vol(k)/Kt) - b*u*Vol(k));
-%     end
-%     plot(0:length(Vol)-1, Vol)
-%     hold on
-% end
+figure(2)
+for u = 0:0.1:1
+    h=0.1;
+    Vol = zeros(1, 50);
+    Vol(1) = 1;
+    for k = 1:length(Vol)-1
+       Vol(k+1) = Vol(k) + h*(a*Vol(k)*(1-Vol(k)/Kt) - b*u*Vol(k));
+    end
+    plot(0:length(Vol)-1, Vol)
+    hold on
+end
