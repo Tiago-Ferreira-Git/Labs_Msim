@@ -7,27 +7,24 @@ Kt = 10;
 b = 1;
 h = 1;
 
-d = zeros(6,100);
+d = zeros(5,100);
 d(:,1) = 0;
 
-temp = horzcat(d(1,1),upsample(zeros(1,5)+dosagem,8),upsample(zeros(1,15)+dosagem,4));
+temp = horzcat(d(1,1),upsample(zeros(1,5)+dosagem,12),upsample(zeros(1,15)+dosagem,5));
 d(1,:) = temp(1:100);
-temp = horzcat(d(2,1) ,upsample(zeros(1,6)+dosagem,3),upsample(zeros(1,15),8));
+temp = horzcat(d(2,1) ,upsample(zeros(1,4)+dosagem,5),upsample(zeros(1,15)+dosagem,12));
 d(2,:) = temp(1:100);
-temp = horzcat(d(3,1) ,upsample(zeros(1,6)+dosagem,3),upsample(zeros(1,15)+dosagem,12));
+temp = horzcat(d(3,1) ,upsample(zeros(1,30)+dosagem,5));
 d(3,:) = temp(1:100);
-temp = horzcat(d(4,1) ,upsample(zeros(1,30)+dosagem,5));
+temp = horzcat(d(4,1) ,upsample(zeros(1,30)+dosagem,12));
 d(4,:) = temp(1:100);
-temp = horzcat(d(5,1) ,upsample(zeros(1,30)+dosagem,8));
-d(5,:) = temp(1:100);
-temp = horzcat(d(6,1) ,upsample(zeros(1,25)+dosagem,12));
-d(6,:) = temp(1:100);
+
 
 days = 100;
 
 u = zeros(2,days);
 
-for i = 1:6
+for i = 1:5
     u = p2(dosagem, days, 0, 1, d(i,:));
     figure(i)
     Vol = zeros(1, days);
@@ -45,7 +42,7 @@ for i = 1:6
     ylabel('Doses')
     ylim([0 4])
     plot(0:length(Vol)-1, d(i,:))
-    legend('Volume células cancêrosas','Dose de fármaco','Location','NorthEast')
+    legend('Volume tumor','Dose de fármaco','Location','NorthEast')
     hold off
     figure(i+100)
     plot(0:1:99, u);
