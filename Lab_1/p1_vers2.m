@@ -49,7 +49,7 @@ function [c1,c2] = p1_vers2(c1_inicial,c2_inicial,dosagem,dias,dias_entre_dosage
     c1 = X(1,:);
     c2 = X(2,:);
     
-    plot(0:1:dias-1,X(1,:),0:1:dias-1,X(2,:),0:1:dias-1,d);
+    %plot(0:1:dias-1,X(1,:),0:1:dias-1,X(2,:),0:1:dias-1,d);
     % figure(1)
 end
 
