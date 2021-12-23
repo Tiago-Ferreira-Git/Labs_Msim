@@ -20,7 +20,6 @@ function [c1,c2] = p1_vers2(c1_inicial,c2_inicial,dosagem,dias,dias_entre_dosage
     end
     X = zeros(2,(dias)-1); %X contém os valores de c1 na primeira linha e c2 na segunda linha
     
-    
     %Dados do problema%
     h=1;
     K12 = 0.3 * 3600;
@@ -49,7 +48,7 @@ function [c1,c2] = p1_vers2(c1_inicial,c2_inicial,dosagem,dias,dias_entre_dosage
     c1 = X(1,:);
     c2 = X(2,:);
     
-    %plot(0:1:dias-1,X(1,:),0:1:dias-1,X(2,:),0:1:dias-1,d);
-    % figure(1)
+%     plot(0:1:dias-1,d);
+%      figure(1)
 end
 
