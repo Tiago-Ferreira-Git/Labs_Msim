@@ -1,7 +1,13 @@
 close all;
+<<<<<<< Updated upstream
 Njogadas=1010;
 NMC=2; %Número de runs
 Ndiscard=1;
+=======
+Njogadas=110;
+NMC=20; %Número de runs
+Ndiscard=10;
+>>>>>>> Stashed changes
 Ncasas=7;
 z = zeros(NMC,Ncasas); %número de estados do jogo, que indica o número de vezes que se caiu em cada casa
 y = zeros(1,Njogadas); % dimensão igual ao número de jogadas em cada run de Monte Carlo, que indica as casas em que se caiu em cada jogada
@@ -11,7 +17,7 @@ estados = [2,3,4,5,6,3,1;
 Lucro_av = zeros(NMC,Ncasas);
 coinflips = zeros(1,Njogadas);
 
-%rand('state',0)
+rand('state',0)
 espera = 0;
 hh = waitbar(espera,"Doing stuff");
 
@@ -36,14 +42,14 @@ for i=1:1:NMC
     for k=1:1:Ncasas
         Lucro_av(i,k) = Aluguer(k) * z(i,k)/(Njogadas-Ndiscard);
     end 
-%     figure(i*10)
-%     plot(1:1:Njogadas, y, 'o')
-%     xlabel('Nº da Jogada')
-%     ylabel('Estado da marca')
-%     figure(i*10+1)
-%     plot(1:1:Njogadas, coinflips, 'o')
-%     xlabel('Nº da Jogada')
-%     ylabel('Resultado da moeda')
+    figure(i*10)
+    plot(1:1:Njogadas+1, y, 'o')
+    xlabel('Nº da Jogada')
+    ylabel('Estado da marca')
+    figure(i*10+1)
+    plot(1:1:Njogadas+1, coinflips, 'o')
+    xlabel('Nº da Jogada')
+    ylabel('Resultado da moeda')
     
 end
 zfreq = z / (Njogadas-Ndiscard);
