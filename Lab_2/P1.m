@@ -1,7 +1,8 @@
 close all;
-Njogadas=110;
+Njogadas=1010;
 NMC=2; %Número de runs
-Ndiscard=10;
+Ndiscard=1
+0;
 Ncasas=7;
 z = zeros(NMC,Ncasas); %número de estados do jogo, que indica o número de vezes que se caiu em cada casa
 y = zeros(1,Njogadas); % dimensão igual ao número de jogadas em cada run de Monte Carlo, que indica as casas em que se caiu em cada jogada
@@ -20,7 +21,7 @@ for i=1:1:NMC
     %z(i,x) = z(i,x)+1; %Começar no 1 conta para a freq? y(i,1) tem que ser 1?
     espera = espera + 1/NMC;
     waitbar(espera,hh,"Doing stuff");
-    for k=1:1:Njogadas         
+    for k=1:1:Njogadas+1 % a inicial n conta para o nº de jogadas         
         avanca = randi([1 2]); % lançamento da moeda
         coinflips(k)=avanca;
         if x == 0              % no inicio está "fora do tabuleiro"
@@ -29,7 +30,7 @@ for i=1:1:NMC
             x = estados(avanca,x);  % avança segundo o diagrama
         end
         y(k) = x;
-        if k > Ndiscard   
+        if k > Ndiscard+1    
             z(i,x) = z(i,x)+1;
         end
     end 
@@ -49,7 +50,11 @@ end
 zfreq = z / (Njogadas-Ndiscard);
 
 figure(1)
-bar(zfreq)
+bar(1:7, zfreq(1,:))
+xlabel('Nº da casa')
+ylabel('Probabilidade de calhar cada casa')
 figure(2)
-bar(Lucro_av)
+bar(1:7, Lucro_av(1,:))
+xlabel('Nº da casa')
+ylabel('Lucro médio de cada casa[€/Jogada]')
 close(hh)
