@@ -1,8 +1,7 @@
 close all;
 Njogadas=1010;
 NMC=2; %Número de runs
-Ndiscard=1
-0;
+Ndiscard=1;
 Ncasas=7;
 z = zeros(NMC,Ncasas); %número de estados do jogo, que indica o número de vezes que se caiu em cada casa
 y = zeros(1,Njogadas); % dimensão igual ao número de jogadas em cada run de Monte Carlo, que indica as casas em que se caiu em cada jogada
