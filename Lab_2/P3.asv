@@ -1,6 +1,6 @@
 close all;
-Njogadas=50;
-NMC=100000; %Número de runs ( aumentar este numero leva a resultados mais uniformes)
+Njogadas=100;
+NMC=1000; %Número de runs ( aumentar este numero leva a resultados mais uniformes)
 Ncasas=7;
 Aluguer = [10,10,0,15,20,25,35];
 estados = [2,3,4,5,6,3,1;
@@ -17,7 +17,7 @@ for i=1:1:NMC
     %z(i,x) = z(i,x)+1; %Começar no 1 conta para a freq? y(i,1) tem que ser 1?
     espera = espera + 1/NMC;
     waitbar(espera,hh,"Doing stuff");
-    for k=1:1:Njogadas %+1 %se se contar com a jogada 0 +50 jogadas         
+    for k=1:1:Njogadas         
         avanca = randi([1 2]); % lançamento da moeda
         if x == 0              % no inicio está "fora do tabuleiro"
             x = avanca;        % ou vai para o 1 ou para o 2
@@ -31,8 +31,7 @@ for i=1:1:NMC
 end
 freq4 = counter4/NMC; % calcula a frequencia com que em cada jogada calhou a casa 4
 figure(1)
-bar(0:1:Njogadas-1, freq4)
-xlim([0,Njogadas])
+bar(1:Njogadas, freq4)
 xlabel('Nº da jogada')
 ylabel('Probabilidade de calhar o estado 4')
 close(hh)
