@@ -14,7 +14,6 @@ hh = waitbar(espera,"Doing stuff");
 
 for i=1:1:NMC
     x = 0; %variável escalar que indica o número do estado em que a marca do jogador está em cada instante;
-    %z(i,x) = z(i,x)+1; %Começar no 1 conta para a freq? y(i,1) tem que ser 1?
     espera = espera + 1/NMC;
     waitbar(espera,hh,"Doing stuff");
     for k=1:1:Njogadas         
