@@ -72,7 +72,7 @@ for i = 1:1:Ncasas
 end
 legend('Casa 1','Casa 2','Casa 3','Casa 4','Casa 5','Casa 6','Casa 7');
 xlabel('Número de runs')
-ylabel('Probabilidade de ocurrência')
+ylabel('Probabilidade de ocorrência')
 
 %Last bullet point on question P2. Probability of coinflips
 
