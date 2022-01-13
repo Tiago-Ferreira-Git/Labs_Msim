@@ -1,6 +1,6 @@
 close all;
-Njogadas=50;
-NMC=100000; %Número de runs ( aumentar este numero leva a resultados mais uniformes)
+Njogadas=100;
+NMC=1000; %Número de runs ( aumentar este numero leva a resultados mais uniformes)
 Ncasas=7;
 Aluguer = [10,10,0,15,20,25,35];
 estados = [2,3,4,5,6,3,1;

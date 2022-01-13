@@ -1,6 +1,6 @@
 close all;
-Njogadas=20;
-NMC=3; %Número de runs
+Njogadas=100;
+NMC=100; %Número de runs
 Ndiscard=0;
 Ncasas=7;
 z = zeros(NMC,Ncasas); %número de estados do jogo, que indica o número de vezes que se caiu em cada casa
@@ -11,9 +11,11 @@ estados = [2,3,4,5,6,3,1;
 Lucro_av = zeros(1,Ncasas);
 coinflips = zeros(1,Njogadas);
 zfreq = zeros(1,Ncasas);
-rand('state',0)
+%rand('state',0)
 espera = 0;
+first = 1;
 hh = waitbar(espera,"Doing stuff");
+
 
 for i=1:1:NMC
     x = 0; %variável escalar que indica o número do estado em que a marca do jogador está em cada instante;
@@ -32,15 +34,17 @@ for i=1:1:NMC
             z(i,x) = z(i,x)+1;
         end
     end 
-    figure(i*10)
-    plot(1:1:Njogadas+1, y, 'o')
-    xlabel('Nº da Jogada')
-    ylabel('Estado da marca')
-    figure(i*10+1)
-    plot(1:1:Njogadas+1, coinflips, 'o')
-    xlabel('Nº da Jogada')
-    ylabel('Resultado da moeda')
-    
+    if first == 1
+        figure(10)
+        plot(1:1:Njogadas+1, y, 'o')
+        xlabel('Nº da Jogada')
+        ylabel('Estado da marca')
+        figure(11)
+        plot(1:1:Njogadas+1, coinflips, 'o')
+        xlabel('Nº da Jogada')
+        ylabel('Resultado da moeda')
+        first = 0;
+    end
 end
 for i=1:1:Ncasas
     zfreq(i) = sum(z(:,i))/((Njogadas-Ndiscard)*NMC);

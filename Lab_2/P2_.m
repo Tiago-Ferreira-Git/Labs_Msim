@@ -1,7 +1,7 @@
 close all;
-Njogadas=1000;
-NMC=20; %Número de runs
-Ndiscard=0;
+Njogadas=100;
+NMC=100; %Número de runs
+Ndiscard=10;
 Ncasas=7;
 z = zeros(NMC,Ncasas); %número de estados do jogo, que indica o número de vezes que se caiu em cada casa
 y = zeros(1,Njogadas); % dimensão igual ao número de jogadas em cada run de Monte Carlo, que indica as casas em que se caiu em cada jogada
@@ -40,6 +40,8 @@ end
 close(hh)
 figure(1)
 for i = 1:1:Ncasas
+    xlim([1,NMC]);
     plot(zfreq(:,i))
     hold on
 end
+legend('1','2','3','4','5', '6', '7');
