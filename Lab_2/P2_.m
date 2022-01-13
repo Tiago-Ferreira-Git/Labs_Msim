@@ -48,8 +48,8 @@ for i = 1:1:(length(y)-1)
            end
        end
        if(salto == 6)
-           if(~((y(i) == 7 && y(i+1) == 1)))
-                disp( "Array position \t" + num2str(i) + "e o valor de salto \t"+ num2str(salto) )
+           if(~((y(i) == 7 && y(i+1) == 1) &&  coinflips(i+1) == 1))
+                disp("There's a wrong move in this run"  )
            end
        end
     end
