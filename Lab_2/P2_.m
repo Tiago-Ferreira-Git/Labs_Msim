@@ -70,8 +70,9 @@ for i = 1:1:Ncasas
     plot(zfreq(:,i))
     hold on
 end
-legend('1','2','3','4','5', '6', '7');
-
+legend('Casa 1','Casa 2','Casa 3','Casa 4','Casa 5','Casa 6','Casa 7');
+xlabel('Número de runs')
+ylabel('Probabilidade de ocurrência')
 
 %Last bullet point on question P2. Probability of coinflips
 
@@ -87,7 +88,8 @@ for i=1:1:length(coinflips)
 end
 figure(3)
 bar(1:2, coinflips_frequency/Njogadas,'FaceColor','flat')
-
-
+xlabel('Cara (1) e Coroa (2)')
+ylabel('Probabilidade de ocurrência')
+%1 corresponde a sair "cara" e um resultado igual a 2 é "coroa"
 close(hh)
 
