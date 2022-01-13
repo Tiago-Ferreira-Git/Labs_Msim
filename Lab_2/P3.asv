@@ -1,6 +1,6 @@
 close all;
 Njogadas=30;
-NMC=10000; %Número de runs ( aumentar este numero leva a resultados mais uniformes)
+NMC=1000; %Número de runs ( aumentar este numero leva a resultados mais uniformes)
 Ncasas=7;
 Aluguer = [10,10,0,15,20,25,35];
 estados = [2,3,4,5,6,3,1;
@@ -11,7 +11,7 @@ counter4 = zeros(1, Njogadas);
 %rand('state',0)
 espera = 0;
 hh = waitbar(espera,"Doing stuff");
-for casa = 3:1:5
+for casa = 1:1:7
     counter4 = zeros(1, Njogadas);
     for i=1:1:NMC
         x = 0; %variável escalar que indica o número do estado em que a marca do jogador está em cada instante;
@@ -30,14 +30,15 @@ for casa = 3:1:5
         end     
     end
     freq4 = counter4/NMC; % calcula a frequencia com que em cada jogada calhou a casa 4
-    final = sum(freq4(21:30))/10;
+    final = sum(freq4(20:30))/10;
+
     extr_sup = zeros(1, Njogadas)+ 1.1*final;
     extr_inf = zeros(1, Njogadas)+ 0.9*final;
     figure(1+casa*10)
     plot(0:1:Njogadas-1, freq4, 'o--')
     hold on
-    plot(0:1:Njogadas-1, extr_sup, '--', 'color', [0.6, 0.6, 0.6])
-    plot(0:1:Njogadas-1, extr_inf, '--', 'color', [0.6, 0.6, 0.6])
+    plot(0:1:Njogadas-1, extr_sup, '--')
+    plot(0:1:Njogadas-1, extr_inf, '--')
     xlim([0,Njogadas])
     xlabel('Nº da jogada')
     ylabel("Probabilidade de calhar o estado " + casa)
