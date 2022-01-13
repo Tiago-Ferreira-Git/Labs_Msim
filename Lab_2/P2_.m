@@ -30,6 +30,33 @@ for i=1:1:NMC
         end
     end 
 end
+
+%testing if transitions are right. First bullet point on question P2.
+for i = 1:1:(length(y)-1)
+    salto = y(i+1) - y(i);
+    if(salto ~= 1 && salto ~= 2)
+       salto = abs(salto);
+       if(salto == 3)
+           if(~((y(i) == 6 && y(i+1) == 3) &&  coinflips(i+1) == 1))
+                disp("There's a wrong move in this run" )
+                disp(i)
+           end
+       end
+       if(salto == 5)
+           if(~((y(i) == 7 && y(i+1) == 2)  &&  coinflips(i+1) == 2))
+                disp("There's a wrong move in this run"  )
+           end
+       end
+       if(salto == 6)
+           if(~((y(i) == 7 && y(i+1) == 1)))
+                disp( "Array position \t" + num2str(i) + "e o valor de salto \t"+ num2str(salto) )
+           end
+       end
+    end
+end   
+
+
+%testing if transitions are right. 
 for n = 1:1:NMC
     for i=1:1:Ncasas
         zfreq(n,i) = sum(z(1:n,i))/((Njogadas-Ndiscard)*n);
@@ -37,7 +64,6 @@ for n = 1:1:NMC
       espera = espera + 1/NMC;
       waitbar(espera,hh,"Doing stuff");
 end
-close(hh)
 figure(1)
 for i = 1:1:Ncasas
     xlim([1,NMC]);
@@ -45,3 +71,23 @@ for i = 1:1:Ncasas
     hold on
 end
 legend('1','2','3','4','5', '6', '7');
+
+
+%Last bullet point on question P2. Probability of coinflips
+
+coinflips_frequency = zeros(1,2);
+for i=1:1:length(coinflips)
+    if coinflips(i) == 1
+        coinflips_frequency(1,1) = coinflips_frequency(1,1) + 1; 
+    end
+    if coinflips(i) == 2
+        
+        coinflips_frequency(1,2) = coinflips_frequency(1,2) + 1;
+    end
+end
+figure(3)
+bar(1:2, coinflips_frequency/Njogadas,'FaceColor','flat')
+
+
+close(hh)
+
