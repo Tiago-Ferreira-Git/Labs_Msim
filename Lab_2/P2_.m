@@ -89,7 +89,7 @@ end
 figure(3)
 bar(1:2, coinflips_frequency/Njogadas,'FaceColor','flat')
 xlabel('Cara (1) e Coroa (2)')
-ylabel('Probabilidade de ocurrência')
+ylabel('Probabilidade de ocorrência')
 %1 corresponde a sair "cara" e um resultado igual a 2 é "coroa"
 close(hh)
 
