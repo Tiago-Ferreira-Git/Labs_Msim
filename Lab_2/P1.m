@@ -1,6 +1,6 @@
 close all;
-Njogadas=100;
-NMC=100; %Número de runs
+Njogadas=2000;
+NMC=1; %Número de runs
 Ndiscard=0;
 Ncasas=7;
 z = zeros(NMC,Ncasas); %número de estados do jogo, que indica o número de vezes que se caiu em cada casa

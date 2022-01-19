@@ -8,13 +8,13 @@ estados = [2,3,4,5,6,3,1;
            3,4,5,6,3,7,2]; %representação da máquina de estados a posição estados(1,1) representa a casa onde se vai para caso estejamos na casa 1 e calhe cara
 generator = ["twister" "simdTwister" "combRecursive" "multFibonacci" "philox" "threefry" "v5uniform" "v5normal" "v4"];
 espera = 0;
-hh = waitbar(espera,"Doing stuff");
+%hh = waitbar(espera,"Doing stuff");
 
 for jj=1:1:9
     rng('shuffle', generator(jj));
     coinflips = zeros(1,Njogadas);
     zfreq = zeros(NMC,Ncasas);
-    z = zeros(NMC,Ncasas); %número de estados do jogo, que indica o número de vezes que se caiu em cada casa
+    z = zeros(NMC,Ncasas); %nzúmero de estados do jogo, que indica o número de vezes que se caiu em cada casa
     y = zeros(1,Njogadas); % dimensão igual ao número de jogadas em cada run de Monte Carlo, que indica as casas em que se caiu em cada jogada    
 
     for i=1:1:NMC
@@ -63,37 +63,26 @@ for jj=1:1:9
         for i=1:1:Ncasas
             zfreq(n,i) = sum(z(1:n,i))/((Njogadas-Ndiscard)*n);
         end
-          espera = espera + 1/NMC;
-          waitbar(espera,hh,"Doing stuff");
+         % espera = espera + 1/NMC;
+          %waitbar(espera,hh,"Doing stuff");
     end
     figure(1 + jj)
+    plot_legends = zeros(1,Ncasas);
     for i = 1:1:Ncasas
-        xlim([1,NMC]);
-        plot(zfreq(:,i))
+        extr_sup = zeros(1, 100)+ 1.05*zfreq(NMC,i);
+        extr_inf = zeros(1, 100)+ 0.95*zfreq(NMC,i);
+        xlim([1,100]);
+        plot_lines = plot(1:1:100,zfreq(1:100,i));
         hold on
+        plot(1:1:100, extr_sup,'color',plot_lines.Color,'LineStyle','--');
+        hold on
+        plot(1:1:100, extr_inf,'color',plot_lines.Color,'LineStyle','--');
+        plot_legends(i) = plot_lines;
     end
-    legend('Casa 1','Casa 2','Casa 3','Casa 4','Casa 5','Casa 6','Casa 7');
+    
+    legend(plot_legends,'Casa 1','Casa 2','Casa 3','Casa 4','Casa 5','Casa 6','Casa 7');
     xlabel('Número de runs')
     ylabel('Probabilidade de ocorrência')
     grid on
-
-    %Last bullet point on question P2. Probability of coinflips
-
-    coinflips_frequency = zeros(1,2);
-    for i=1:1:length(coinflips)
-        if coinflips(i) == 1
-            coinflips_frequency(1,1) = coinflips_frequency(1,1) + 1; 
-        end
-        if coinflips(i) == 2
-
-            coinflips_frequency(1,2) = coinflips_frequency(1,2) + 1;
-        end
-    end
-    figure(100 + jj)
-    bar(1:2, coinflips_frequency/Njogadas,'FaceColor','flat')
-    xlabel('Cara (1) e Coroa (2)')
-    ylabel('Probabilidade de ocorrência')
-    %1 corresponde a sair "cara" e um resultado igual a 2 é "coroa"
-    close(hh)
 end
 
