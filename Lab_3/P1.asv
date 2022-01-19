@@ -14,7 +14,7 @@ xi=out.z;
 
 figure
 Tfinal=25;
-axis([0 Tfinal 0 12])
+axis([13 Tfinal 0 3e-14])
 hold on
 curve=animatedline;
 set(gca,'Xlim',[0 Tfinal])
