@@ -12,7 +12,7 @@ set_param('P1_sim', 'StopTime','25');
 warning('off', 'Simulink:Solver:ZeroCrossingNotBracketedDueToSmallSignalValues');
 
 elasticidade =-0.8;
-velocidade = 0;
+velocidade = -6;
 
 
 cores = [[0 0.4470 0.7410];
@@ -49,7 +49,7 @@ hold off;
 elasticidade =-0.8;
 set_param('P1_sim/Elasticidade_da_bola','Gain','-0.8');
 figure
-for jj=1:1:5
+for jj=1:1:7
     
     set_param('P1_sim/Velocidade_inicial','Value',num2str(velocidade));
     out=sim('P1_sim', 'SaveTime', 'on', 'SaveState', 'on');
