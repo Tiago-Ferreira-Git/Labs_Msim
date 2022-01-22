@@ -1,0 +1,42 @@
+clear
+close all;
+open_system('P1_sim');
+
+warning('off', 'Simulink:Solver:ZeroCrossingNotBracketedDueToSmallSignalValues');
+
+%set_param('P1_sim', 'ZeroCrossAlgorithm','Nonadaptive');
+
+set_param('P1_sim', 'ZeroCrossAlgorithm','Adaptive');
+set_param('P1_sim', 'StopTime','25');
+set_param('P1_sim/coef_restituicao1','Gain', '-0.95');
+set_param('P1_sim/coef_restituicao2','Gain', '-0.5');
+set_param('P1_sim/v0_z','Value',0);
+set_param('P1_sim/v0_y','Value',5);
+set_param('P1_sim/z0','Value',10);
+set_param('P1_sim/y0','Value',0);
+
+    
+
+
+set_param('P1_sim/Velocidade_inicial','Value','0');
+for jj=1:1:8
+    set_param('P1_sim/Elasticidade_da_bola','Gain',num2str(elasticidade));
+    out=sim('P1_sim', 'SaveTime', 'on', 'SaveState', 'on');
+    ti=out.tout;
+    xi=out.z;
+    axis([0 12 0 12]);
+    legend();
+    xlabel('Tempo - s')
+    ylabel('Posição - m')
+    plot(xi.Time,xi.data,'DisplayName', sprintf('Elasticidade %0.1f',elasticidade));
+    hold all;
+    elasticidade = elasticidade + 0.1;
+%     Tfinal = Tfinal*0.8;
+    pause(0.1)
+    disp(elasticidade)
+end
+hold off
+%Variar a velocidade inicial%
+elasticidade =-0.8;
+set_param('P1_sim/Elasticidade_da_bola','Gain','-0.8');
+
