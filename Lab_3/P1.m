@@ -44,7 +44,7 @@ for jj=1:1:8
     pause(0.1)
     disp(elasticidade)
 end
-
+hold off;
 %Variar a velocidade inicial%
 elasticidade =-0.8;
 set_param('P1_sim/Elasticidade_da_bola','Gain','-0.8');
