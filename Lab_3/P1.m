@@ -16,15 +16,15 @@ velocidade = -6;
 
 
 cores = [[0 0.4470 0.7410];
-            [0.8500 0.3250 0.0980];
-            [0.9290 0.6940 0.1250];
-            [0.4940 0.1840 0.5560];
-            [0.4660 0.6740 0.1880];
-            [0.3010 0.7450 0.9330];
-            [0.6350 0.0780 0.1840];
-            [0 0.4470 0.7410];
-        ];
-    
+    [0.8500 0.3250 0.0980];
+    [0.9290 0.6940 0.1250];
+    [0.4940 0.1840 0.5560];
+    [0.4660 0.6740 0.1880];
+    [0.3010 0.7450 0.9330];
+    [0.6350 0.0780 0.1840];
+    [0 0.4470 0.7410];
+    ];
+
 %Variar a elasticidade%
 
 set_param('P1_sim/Velocidade_inicial','Value','0');
@@ -40,7 +40,7 @@ for jj=1:1:8
     plot(xi.Time,xi.data,'DisplayName', sprintf('Elasticidade %0.1f',elasticidade));
     hold all;
     elasticidade = elasticidade + 0.1;
-%     Tfinal = Tfinal*0.8;
+    %   Tfinal = Tfinal*0.8;
     pause(0.1)
     disp(elasticidade)
 end
@@ -65,5 +65,16 @@ for jj=1:1:7
     pause(0.1)
     disp(elasticidade)
 end
-
 hold off
+
+%% 0.0005
+set_param('P1_sim', 'StopTime','60');
+figure
+set_param('P1_sim/Elasticidade_da_bola','Gain','-0.8');
+out=sim('P1_sim', 'SaveTime', 'on', 'SaveState', 'on');
+ti=out.tout;
+xi=out.z;
+plot(xi.Time,xi.data,'DisplayName', sprintf('Elasticidade %0.1f',elasticidade));
+axis([57.90 57.95 0 0.2*1e-4]);
+xlabel('Tempo - s')
+ylabel('Posição - m')
