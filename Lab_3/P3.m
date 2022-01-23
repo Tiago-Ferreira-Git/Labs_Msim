@@ -19,18 +19,34 @@ out=sim('P3_sim', 'SaveTime', 'on', 'SaveState', 'on');
 ti = out.tout;
 zi = out.z;
 yi = out.y;
-figure(1)
-plot(yi.data,zi.data);
-axis([0 16 0 14])
 
-figure(2)
-plot(zi.Time,zi.data);
-axis([0 16 0 14])
-pause(0.1)
-figure(3)
-plot(yi.Time,yi.data);
-axis([0 16 0 14])
-pause(0.1)
+% figure(1)
+% plot(yi.data,zi.data);
+% legend('Trajectória')
+% axis([0 25 0 12])
+% xlabel('Y [m]')
+% ylabel('Z [m]')
+
+figure(1)
+hold on
+set(gca,'Xlim',[0 25])
+curve=animatedline;
+for ii=1:length(yi)
+    pause(2)
+    plot(yi(ii).data,zi(ii).data);
+    pause(2)
+end
+hold off
+
+% figure(2)
+% plot(zi.Time,zi.data);
+% axis([0 16 0 14])
+% pause(0.1)
+% 
+% figure(3)
+% plot(yi.Time,yi.data);
+% axis([0 16 0 14])
+% pause(0.1)
 
 
 
