@@ -68,3 +68,6 @@ plot(xi.Time,xi.data,'DisplayName', sprintf('Elasticidade %0.1f',elasticidade));
 axis([57.90 57.95 0 0.2*1e-4]);
 xlabel('Tempo - s')
 ylabel('Posição - m')
+
+
+
