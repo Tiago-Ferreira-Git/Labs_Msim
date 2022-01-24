@@ -11,6 +11,21 @@ warning('off', 'Simulink:Solver:ZeroCrossingNotBracketedDueToSmallSignalValues')
 atrito=0;
 velocidade = 0;
 
+figure(1)
+grid on;
+axis([0 12 0 12]);
+hold all;
+
+figure(2)
+grid on;
+axis([0 12 -15 12]);
+hold all;
+ 
+figure(3)
+grid on;
+axis([0 12 -16 0]);
+hold all;   
+
 %Variar o atrito%
 set_param('P2_sim_bex/Velocidade_inicial','Value',num2str(velocidade));
 set_param('P2_sim_bex/Elasticidade_da_bola','Gain','-0.8');
@@ -20,9 +35,7 @@ for jj=1:1:3
     ti=out.tout;
     
     figure(1)
-    grid on;
     xi=out.z;
-    axis([0 12 0 12]);
     lgd = legend;
     lgd.FontSize = 12;
     xlabel('Tempo - s')
@@ -31,9 +44,7 @@ for jj=1:1:3
     hold all;
     
     figure(2)
-    grid on;
     xi=out.v;
-    axis([0 12 -15 12]);
     lgd = legend;
     lgd.FontSize = 12;
     xlabel('Tempo - s')
@@ -41,10 +52,8 @@ for jj=1:1:3
     plot(xi.Time,xi.data,'LineWidth',1.5,'DisplayName', sprintf('Atrito %0.1f',atrito));
     hold all;
     
-    figure(3)
-    grid on;    
+    figure(3)   
     xi=out.a;
-    axis([0 12 -16 0]);
     lgd = legend;
     lgd.FontSize = 12;
     xlabel('Tempo - s')
