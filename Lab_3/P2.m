@@ -29,7 +29,7 @@ hold all;
 %Variar o atrito%
 set_param('P2_sim_bex/Velocidade_inicial','Value',num2str(velocidade));
 set_param('P2_sim_bex/Elasticidade_da_bola','Gain','-0.8');
-for jj=1:1:3
+for jj=1:1:10
     set_param('P2_sim_bex/Atrito_do_ar','Gain',num2str(atrito));
     out=sim('P2_sim_bex', 'SaveTime', 'on', 'SaveState', 'on');
     ti=out.tout;
@@ -37,28 +37,29 @@ for jj=1:1:3
     figure(1)
     xi=out.z;
     lgd = legend;
-    lgd.FontSize = 12;
+    lgd.FontSize = 10;
     xlabel('Tempo - s')
     ylabel('Posição - m')
-    plot(xi.Time,xi.data,'LineWidth',1.5,'DisplayName', sprintf('Atrito %0.1f',atrito));
+    plot(xi.Time,xi.data,'LineWidth',1.4,'DisplayName', sprintf('Atrito %0.1f',atrito));
     hold all;
     
     figure(2)
     xi=out.v;
     lgd = legend;
-    lgd.FontSize = 12;
+    lgd.FontSize = 10;
+    axis([0 20 -15 15])
     xlabel('Tempo - s')
     ylabel('Velocidade - m/s')
-    plot(xi.Time,xi.data,'LineWidth',1.5,'DisplayName', sprintf('Atrito %0.1f',atrito));
+    plot(xi.Time,xi.data,'LineWidth',1.4,'DisplayName', sprintf('Atrito %0.1f',atrito));
     hold all;
     
     figure(3)   
     xi=out.a;
     lgd = legend;
-    lgd.FontSize = 12;
+    lgd.FontSize = 10;
     xlabel('Tempo - s')
     ylabel('Acelaração - m/s^2')
-    plot(xi.Time,xi.data,'LineWidth',1.5,'DisplayName', sprintf('Atrito %0.1f',atrito));
+    plot(xi.Time,xi.data,'LineWidth',1.4,'DisplayName', sprintf('Atrito %0.1f',atrito));
     hold all;
     
     atrito = atrito - 0.4;
