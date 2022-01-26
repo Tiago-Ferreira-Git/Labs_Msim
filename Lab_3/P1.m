@@ -17,7 +17,7 @@ velocidade = -10;
 %Variar a elasticidade%
 set_param('P1_sim/Velocidade_inicial','Value','0');
 figure(1)
-numero_de_maximos = 8;
+numero_de_maximos = 7;
 alt_max = zeros(numero_de_maximos,numero_de_maximos);
 for jj=1:1:numero_de_maximos
     set_param('P1_sim/Elasticidade_da_bola','Gain',num2str(elasticidade));
@@ -46,21 +46,21 @@ for jj=1:1:numero_de_maximos
     end
 end
 
-attenuation = zeros(numero_de_maximos,length(alt_max(1,:))-1);
+height_quocient = zeros(numero_de_maximos,length(alt_max(1,:))-1);
 gaussian_params = zeros(2,numero_de_maximos);
 for jj=1:1:numero_de_maximos
     for i=1:1:length(alt_max(1,:))-1
         if alt_max(jj,i+1)/alt_max(jj,i) == 0
-            attenuation(jj,i) = NaN;
+            height_quocient(jj,i) = NaN;
         else
-            attenuation(jj,i) = alt_max(jj,i+1)/alt_max(jj,i);
+            height_quocient(jj,i) = alt_max(jj,i+1)/alt_max(jj,i);
         end
         
     end
     %standart deviation
-    gaussian_params(1,jj) = std(attenuation(jj,:),'omitnan');
+    gaussian_params(1,jj) = std(height_quocient(jj,:),'omitnan');
     %mean
-    gaussian_params(2,jj) = mean(attenuation(jj,:),'omitnan');
+    gaussian_params(2,jj) = mean(height_quocient(jj,:),'omitnan');
 end
 
 hold off;
@@ -82,7 +82,7 @@ for jj=1:1:5
     plot(xi.Time,xi.data,'LineWidth',1.5,'DisplayName', sprintf('Velocidade %d',velocidade));
     hold all;
     velocidade = velocidade + 3;
-    pause(0.1)
+    pause(1)
     disp(velocidade);
 end
 hold off
