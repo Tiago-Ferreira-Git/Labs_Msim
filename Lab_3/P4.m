@@ -1,20 +1,27 @@
 clear
 close all;
 open_system('P4_sim');
-
 warning('off', 'Simulink:Solver:ZeroCrossingNotBracketedDueToSmallSignalValues');
 
-%set_param('P1_sim', 'ZeroCrossAlgorithm','Nonadaptive');
+%definição das condições iniciais e dos valores dos coeficientes de
+%restituição dos pavimentos:
+coef_chao = 0.85;
+coef_parede = 0.7;
+distancia_parede = 15;
+v0z = 0;
+v0y = 2;
+z0 = 10;
+y0 = 0;
 
 set_param('P4_sim', 'ZeroCrossAlgorithm','Adaptive');
 set_param('P4_sim', 'StopTime','25');
-set_param('P4_sim/coef_rest_chao','Gain', '-0.85');
-set_param('P4_sim/coef_rest_parede','Gain', '-0.7');
-set_param('P4_sim/d_parede','Value', '10');
-set_param('P4_sim/v0_z','Value','0');
-set_param('P4_sim/v0_y','Value','2');
-set_param('P4_sim/z0','Value','10');
-set_param('P4_sim/y0','Value','0');
+set_param('P4_sim/coef_rest_chao','Gain', num2str(-coef_chao));
+set_param('P4_sim/coef_rest_parede','Gain', num2str(-coef_parede));
+set_param('P4_sim/d_parede','Value', num2str(distancia_parede));
+set_param('P4_sim/v0_z','Value', num2str(v0z));
+set_param('P4_sim/v0_y','Value', num2str(v0y));
+set_param('P4_sim/z0','Value', num2str(z0));
+set_param('P4_sim/y0','Value', num2str(y0));
 
 out=sim('P4_sim', 'SaveTime', 'on', 'SaveState', 'on');    
 ti = out.tout;

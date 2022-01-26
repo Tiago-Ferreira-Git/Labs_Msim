@@ -32,9 +32,9 @@ yi = out.y;
 
 %traçado dos gráficos relevantes
 metros_pav1 = 0:0.1:distancia_ao_pavimento;
-pav1 = zeros(length(metros_pav1))-0.1;
+pav1 = zeros(1,length(metros_pav1))-0.1;
 metros_pav2 = distancia_ao_pavimento:0.1:30;
-pav2 = zeros(length(metros_pav2))-0.1;
+pav2 = zeros(1,length(metros_pav2))-0.1;
 
 figure(1)
 lgd1 = plot(yi.data,zi.data, 'color', '#0072BD', 'LineWidth', 1.5);
