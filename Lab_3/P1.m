@@ -12,11 +12,14 @@ set_param('P1_sim', 'StopTime','25');
 warning('off', 'Simulink:Solver:ZeroCrossingNotBracketedDueToSmallSignalValues');
 
 elasticidade =-0.8;
-velocidade = -6;
+velocidade = -10;
 
 %Variar a elasticidade%
 set_param('P1_sim/Velocidade_inicial','Value','0');
-for jj=1:1:8
+figure(1)
+numero_de_maximos = 8;
+alt_max = zeros(numero_de_maximos,numero_de_maximos);
+for jj=1:1:numero_de_maximos
     set_param('P1_sim/Elasticidade_da_bola','Gain',num2str(elasticidade));
     out=sim('P1_sim', 'SaveTime', 'on', 'SaveState', 'on');
     ti=out.tout;
@@ -26,19 +29,46 @@ for jj=1:1:8
     lgd.FontSize = 12;
     xlabel('Tempo - s')
     ylabel('Posição - m')
-    plot(xi.Time,xi.data,'LineWidth',1.5,'DisplayName', sprintf('Elasticidade %0.1f',elasticidade));
+    plot(xi.Time,xi.data,'LineWidth',1.5,'DisplayName', sprintf('Elasticidade %0.1f',abs(elasticidade)));
     hold all;
     elasticidade = elasticidade + 0.1;
-    %   Tfinal = Tfinal*0.8;
-    pause(0.1)
-    disp(elasticidade)
+    pause(0.01)
+    alt_max(jj,1) = max(xi.data');
+    k=1;
+    for i=1:1:length(xi.data)
+        if xi.data(i) == 0
+            if(k > numero_de_maximos)
+                break;
+            end
+            k = k+1;
+            alt_max(jj,k)= max(xi.data(i:length(xi.data))');
+        end
+    end
 end
+
+attenuation = zeros(numero_de_maximos,length(alt_max(1,:))-1);
+gaussian_params = zeros(2,numero_de_maximos);
+for jj=1:1:numero_de_maximos
+    for i=1:1:length(alt_max(1,:))-1
+        if alt_max(jj,i+1)/alt_max(jj,i) == 0
+            attenuation(jj,i) = NaN;
+        else
+            attenuation(jj,i) = alt_max(jj,i+1)/alt_max(jj,i);
+        end
+        
+    end
+    %standart deviation
+    gaussian_params(1,jj) = std(attenuation(jj,:),'omitnan');
+    %mean
+    gaussian_params(2,jj) = mean(attenuation(jj,:),'omitnan');
+end
+
 hold off;
 %Variar a velocidade inicial%
 elasticidade =-0.8;
 set_param('P1_sim/Elasticidade_da_bola','Gain','-0.8');
-figure
-for jj=1:1:7
+figure(2)
+for jj=1:1:5
     
     set_param('P1_sim/Velocidade_inicial','Value',num2str(velocidade));
     out=sim('P1_sim', 'SaveTime', 'on', 'SaveState', 'on');
@@ -51,15 +81,15 @@ for jj=1:1:7
     ylabel('Posição - m')
     plot(xi.Time,xi.data,'LineWidth',1.5,'DisplayName', sprintf('Velocidade %d',velocidade));
     hold all;
-    velocidade = velocidade + 2;
+    velocidade = velocidade + 3;
     pause(0.1)
-    disp(elasticidade)
+    disp(velocidade);
 end
 hold off
 
 % 0.0005
 set_param('P1_sim', 'StopTime','60');
-figure
+figure(3)
 set_param('P1_sim/Elasticidade_da_bola','Gain','-0.8');
 out=sim('P1_sim', 'SaveTime', 'on', 'SaveState', 'on');
 ti=out.tout;
