@@ -3,8 +3,7 @@ close all;
 open_system('P4_sim');
 warning('off', 'Simulink:Solver:ZeroCrossingNotBracketedDueToSmallSignalValues');
 
-%definição das condições iniciais e dos valores dos coeficientes de
-%restituição dos pavimentos:
+%definição das condições iniciais e dos parametros de simulação:
 coef_chao = 0.9;
 coef_parede = 0.7;
 distancia_parede = 20;
@@ -65,8 +64,8 @@ for t = 0:0.5:altura_parede
 end
 
 
-legend('Trajectória')
-axis([0 25 0 12])
+legend('Trajectória', 'Parede')
+axis([0 (distancia_parede+3) 0 (z0+2)])
 xlabel('Y [m]')
 ylabel('Z [m]')
 
