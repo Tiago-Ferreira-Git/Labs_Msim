@@ -63,11 +63,11 @@ for t = 0:0.5:altura_parede
     par = par +1;
 end
 
-
 legend('Trajectória', 'Parede')
 axis([0 (distancia_parede+3) 0 (z0+2)])
-xlabel('Y [m]')
-ylabel('Z [m]')
+
+xlabel('Y - m')
+ylabel('Z - m')
 
 
 % figure(2)

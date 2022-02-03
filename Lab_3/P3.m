@@ -50,8 +50,8 @@ legend('Trajectória', 'Pavimento 1 (0.95)', 'Pavimento 2 (0.6)')
 % legend(lgd1,'Trajectória')
 % legend(lgd2, 'Pavimento 1 (0.95)')
 % legend(lgd3, 'Pavimento 2 (0.6)')
-xlabel('Y [m]')
-ylabel('Z [m]')
+xlabel('Y - m')
+ylabel('Z - m')
 
 % figure(2)
 % plot(zi.Time,zi.data);
